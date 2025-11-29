@@ -1,0 +1,60 @@
+# Initialise un nouveau dépôt Git dans le dossier courant
+git init
+
+# Crée une nouvelle branche de fonctionnalité et bascule automatiquement dessus
+# C'est ici que tu vas développer la nouvelle feature, sans toucher à master
+git checkout -b feature/ma_feature
+
+# (tu codes)
+# Tu modifies des fichiers, tu en crées d'autres...
+
+# Ajoute tous les fichiers modifiés et nouveaux dans la "zone de staging"
+# Cela prépare ce qui sera enregistré dans le prochain commit
+git add .
+
+# Crée un commit avec un message clair
+# Le commit enregistre une version propre et figée de ton travail
+git commit -m "feat: description"
+
+# Retourne sur la branche principale (master)
+# pour intégrer la fonctionnalité que tu viens de développer
+git checkout master
+
+# Fusionne la branche de fonctionnalité dans master
+# Si aucune modification ne se chevauche : fast-forward propre
+git merge feature/ma_feature
+
+# Supprime la branche de fonctionnalité devenue inutile
+# Le travail est déjà fusionné, donc supprimer la branche garde ton projet propre
+git branch -d feature/ma_feature
+
+# Initialise un nouveau dépôt Git dans le dossier courant
+git init
+
+# Crée une nouvelle branche de fonctionnalité et bascule automatiquement dessus
+# C'est ici que tu vas développer la nouvelle feature, sans toucher à master
+git checkout -b feature/ma_feature
+
+# (tu codes)
+# Tu modifies des fichiers, tu en crées d'autres...
+
+# Ajoute tous les fichiers modifiés et nouveaux dans la "zone de staging"
+# Cela prépare ce qui sera enregistré dans le prochain commit
+git add .
+
+# Crée un commit avec un message clair
+# Le commit enregistre une version propre et figée de ton travail
+git commit -m "feat: description"
+
+# Retourne sur la branche principale (master)
+# pour intégrer la fonctionnalité que tu viens de développer
+git checkout master
+
+# Fusionne la branche de fonctionnalité dans master
+# Si aucune modification ne se chevauche : fast-forward propre
+git merge feature/ma_feature
+
+# Supprime la branche de fonctionnalité devenue inutile
+# Le travail est déjà fusionné, donc supprimer la branche garde ton projet propre
+git branch -d feature/ma_feature
+
