@@ -1,23 +1,36 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# Simple system monitoring script
+LOG_FILE=${1:-}
 
-echo "===== SYSTEM MONITOR ====="
+if [[ "$LOG_FILE" == "-h" || "$LOG_FILE" == "--help" ]]; then
+    echo "Usage: $0 <logfile>"
+    echo "Analyse un fichier de log et affiche un résumé (erreurs, warnings, infos)."
+    exit 0
+fi
 
-# CPU usage
-echo -n "CPU Usage: "
-top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8"%"}'
+if [[ -z "$LOG_FILE" ]]; then
+    echo "Usage: $0 <logfile>"
+    exit 1
+fi
 
-# RAM usage
-echo -n "RAM Usage: "
-free -h | awk '/Mem/ {print $3 "/" $2}'
+if [[ ! -f "$LOG_FILE" ]]; then
+    echo "Erreur : fichier introuvable."
+    exit 1
+fi
 
-# Disk usage
-echo -n "Disk Usage: "
-df -h / | awk 'NR==2 {print $3 "/" $2}'
+echo "===== ANALYSE DU FICHIER $LOG_FILE ====="
 
-# Uptime
-echo -n "Uptime: "
-uptime -p
+ERROR_COUNT=$(grep -i "error" "$LOG_FILE" | wc -l || true)
+WARNING_COUNT=$(grep -i "warning" "$LOG_FILE" | wc -l || true)
+INFO_COUNT=$(grep -i "info" "$LOG_FILE" | wc -l || true)
 
-echo "=========================="
+echo "Erreurs  : $ERROR_COUNT"
+echo "Warnings : $WARNING_COUNT"
+echo "Infos    : $INFO_COUNT"
+
+echo
+echo "===== 10 dernières erreurs ====="
+grep -i "error" "$LOG_FILE" | tail -10 || echo "Aucune erreur trouvée."
+
+echo "===================================="
