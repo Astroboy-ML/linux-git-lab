@@ -1,6 +1,9 @@
 # Initialise un nouveau dépôt Git dans le dossier courant
 git init
 
+#status sur les fichiers untrack
+git status
+
 # Crée une nouvelle branche de fonctionnalité et bascule automatiquement dessus
 # C'est ici que tu vas développer la nouvelle feature, sans toucher à master
 git checkout -b feature/ma_feature
